@@ -40,7 +40,7 @@ def call(String jcldsn,int maxcc,int maxwait,String[] ddlist) {
     // CHECK CC
     if ((st[3] == "CC") && (st[4].toInteger() <= maxcc)) {
       rmsg = "OK";
-      rmsg += "\n" + GetDDNameJob(jobn,"JES2","JES2MSGLG");
+      rmsg += "\n" + GetDDNameJob(jobn,"JES2","JESMSGLG");
       for (String ddprst in ddlist) {
         String[] parts = ddprst.split("\\.");
         if (parts.size() < 3) {
@@ -51,7 +51,7 @@ def call(String jcldsn,int maxcc,int maxwait,String[] ddlist) {
       }
     } else {
       rmsg = "FAIL ${st[3]} = ${st[4]}";
-      rmsg += "\n" + GetDDNameJob(jobn,"JES2","JES2MSGLG");
+      rmsg += "\n" + GetDDNameJob(jobn,"JES2","JESMSGLG");
     }
   } else {
     rmsg = "FAIL Job still running after ${maxwait} seconds";
