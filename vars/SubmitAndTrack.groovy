@@ -11,7 +11,7 @@
     JESMSGLG
     Requested output DDs
 */
-def call(String jcldsn,long maxcc,int maxwait,String[] ddlist) {
+def call(String jcldsn,int maxcc,int maxwait,String[] ddlist) {
   /* start timer */
   def start = System.currentTimeMillis();
   def ctime = start;
@@ -38,7 +38,7 @@ def call(String jcldsn,long maxcc,int maxwait,String[] ddlist) {
   }
   if (endofjob) {
     // CHECK CC
-    if ((st[3] == "CC") && (st[4].toInteger() <= maxCC)) {
+    if ((st[3] == "CC") && (st[4].toInteger() <= maxcc)) {
       rmsg = "OK";
       rmsg += "\n" + GetDDNameJob(jobn,"JES2","JES2MSGLG");
       for (String ddprst in ddlist) {
