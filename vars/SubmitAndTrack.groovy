@@ -13,7 +13,8 @@
 */
 def call(String jcldsn,long maxcc,int maxwait,String[] ddlist) {
   /* start timer */
-  Date start = Date();
+  Date start = new Date();
+  Date ctime = start;
   /* submit the job */
   String jobn = SubmitJob(jcldsn);
   String rmsg = "";
@@ -24,7 +25,7 @@ def call(String jcldsn,long maxcc,int maxwait,String[] ddlist) {
   status = CheckJob(jobn);
   st = status.tokenize(" ");
   /* wait for it to finish or timeout */
-  while ((Date().GetTime() <= deadline) && !endofjob) {
+  while ((ctime.GetTime() <= deadline) && !endofjob) {
     status = CheckJob(jobn);
     /* get the status */
     st = status.tokenize(" ");
@@ -33,6 +34,7 @@ def call(String jcldsn,long maxcc,int maxwait,String[] ddlist) {
     } else {
       sleep 1;
     }
+    ctime = new Date();
   }
   if (endofjob) {
     // CHECK CC
