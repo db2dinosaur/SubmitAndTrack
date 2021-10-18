@@ -7,7 +7,7 @@ def call(def jobNum, def stepName, def ddName) {
   String[] procstep = stepName.split("\\.");
   def proc = "";
   def step = "";
-  if (procstep.size > 1) {
+  if (procstep.size() > 1) {
     proc = procstep[0];
     step = procstep[1];
   } else {
