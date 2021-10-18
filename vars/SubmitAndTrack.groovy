@@ -63,9 +63,11 @@ def call(String jcldsn,int maxcc,int maxwait,String[] ddlist) {
     } else {
       rmsg = "FAIL ${st[3]} = ${st[4]}";
       rmsg += "\n" + GetDDNameJob(jobn,"JES2","JESMSGLG");
+      currentBuild.result = "FAILURE";
     }
   } else {
     rmsg = "FAIL Job still running after ${maxwait} seconds";
+    currentBuild.result = "FAILURE";
   }
   return rmsg;
 }
