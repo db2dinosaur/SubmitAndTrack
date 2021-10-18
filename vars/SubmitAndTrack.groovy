@@ -24,7 +24,7 @@ def call(String jcldsn,long maxcc,int maxwait,String[] ddlist) {
   status = CheckJob(jobn);
   st = status.tokenize(" ");
   /* wait for it to finish or timeout */
-  do while ((Date().GetTime() <= deadline) && !endofjob) {
+  while ((Date().GetTime() <= deadline) && !endofjob) {
     status = CheckJob(jobn);
     /* get the status */
     st = status.tokenize(" ");
