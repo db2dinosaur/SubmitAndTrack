@@ -18,14 +18,14 @@ def call(String jcldsn,long maxcc,int maxwait,String[] ddlist) {
   /* submit the job */
   String jobn = SubmitJob(jcldsn);
   String rmsg = "";
-  Date deadline = start.GetTime() + (1000 * maxwait);
+  Date deadline = start.getTime() + (1000 * maxwait);
   Boolean endofjob = false;
   String status = "";
   String[] st;
   status = CheckJob(jobn);
   st = status.tokenize(" ");
   /* wait for it to finish or timeout */
-  while ((ctime.GetTime() <= deadline) && !endofjob) {
+  while ((ctime.getTime() <= deadline) && !endofjob) {
     status = CheckJob(jobn);
     /* get the status */
     st = status.tokenize(" ");
