@@ -13,19 +13,19 @@
 */
 def call(String jcldsn,long maxcc,int maxwait,String[] ddlist) {
   /* start timer */
-  Date start = new Date();
-  Date ctime = start;
+  def start = System.currentTimeMillis();
+  def ctime = start;
   /* submit the job */
   String jobn = SubmitJob(jcldsn);
   String rmsg = "";
-  Date deadline = start.getTime() + (1000 * maxwait);
+  def deadline = start + (1000 * maxwait);
   Boolean endofjob = false;
   String status = "";
   String[] st;
   status = CheckJob(jobn);
   st = status.tokenize(" ");
   /* wait for it to finish or timeout */
-  while ((ctime.getTime() <= deadline) && !endofjob) {
+  while ((ctime <= deadline) && !endofjob) {
     status = CheckJob(jobn);
     /* get the status */
     st = status.tokenize(" ");
@@ -34,7 +34,7 @@ def call(String jcldsn,long maxcc,int maxwait,String[] ddlist) {
     } else {
       sleep 1;
     }
-    ctime = new Date();
+    ctime = System.currentTimeMillis();
   }
   if (endofjob) {
     // CHECK CC
