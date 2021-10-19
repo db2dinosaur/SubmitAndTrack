@@ -5,13 +5,13 @@
     JCLDatasetName  : MVS dataset name for the JCL to submit
     MaxCC           : Max job CC for success
     MaxWait         : Max wait time for job to complete
-    DDList          : Array files to return (proc.step.ddname)
+    AllDDs          : If true then all DDs are returned, else just JESMSGLG
   Returns:
     <OK|FAIL> <Message>
     JESMSGLG
     Requested output DDs
 */
-def call(String jcldsn,int maxcc,int maxwait,String[] ddlist) {
+def call(String jcldsn,int maxcc,int maxwait,Boolean alldds) {
   /* start timer */
   def start = System.currentTimeMillis();
   def ctime = start;
@@ -40,26 +40,21 @@ def call(String jcldsn,int maxcc,int maxwait,String[] ddlist) {
     // CHECK CC
     if ((st[3] == "CC") && (st[4].toInteger() <= maxcc)) {
       rmsg = "OK";
-      // get the DD names
-      def ddnames = DDNamesJob(jobn);
-      String[] ddnlist = ddnames.split("\\n");
-      for (String ddn in ddnlist) {
-        String[] ddnprts = ddn.tokenize(" ");
-        if (ddnprts[1] == "-") {
-          rmsg += "\n" + GetDDNameJob(jobn,ddnprts[0],ddnprts[2]);
-        } else {
-          rmsg += "\n" + GetDDNameJob(jobn,"${ddnprts[0]}.${ddnprts[1]}",ddnprts[2]);
+      if (alldds) {
+        // get the DD names
+        def ddnames = DDNamesJob(jobn);
+        String[] ddnlist = ddnames.split("\\n");
+        for (String ddn in ddnlist) {
+          String[] ddnprts = ddn.tokenize(" ");
+          if (ddnprts[1] == "-") {
+            rmsg += "\n" + GetDDNameJob(jobn,ddnprts[0],ddnprts[2]);
+          } else {
+            rmsg += "\n" + GetDDNameJob(jobn,"${ddnprts[0]}.${ddnprts[1]}",ddnprts[2]);
+          }
         }
+      } else {
+        rmsg += "\n" + GetDDNameJob(jobn,"JES2","JESMSGLG");
       }
-/*    rmsg += "\n" + GetDDNameJob(jobn,"JES2","JESMSGLG");
-      for (String ddprst in ddlist) {
-        String[] parts = ddprst.split("\\.");
-        if (parts.size() < 3) {
-          rmsg += "\n" + GetDDNameJob(jobn,parts[0],parts[1]);
-        } else {
-          rmsg += "\n" + GetDDNameJob(jobn,"${parts[0]}.${parts[1]}",parts[2]);
-        }
-      } */
     } else {
       rmsg = "FAIL ${st[3]} = ${st[4]}";
       rmsg += "\n" + GetDDNameJob(jobn,"JES2","JESMSGLG");
