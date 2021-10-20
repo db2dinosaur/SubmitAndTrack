@@ -1,16 +1,14 @@
 
-/* import com.ibm.zoautil.Jobs;
-   import com.ibm.zoautil.JobsOptions;
-*/
-import com.ibm.zoautil.*;
+import com.ibm.zoautil.Jobs;
+import com.ibm.zoautil.JobsOptions;
 
 String call(String jclDataset) {
-/*  JobsOptions jobctrl = new JobsOptions();
+  JobsOptions jobctrl = new JobsOptions();
   jobctrl.maxRC(0);
   jobctrl.failOnError();
-*/
+
   String jobn = "--FAIL--";
-  jobn = com.ibm.zoautil.Jobs.submit(jclDataset);
+  jobn = Jobs.submit(jclDataset);
   try {
 /*    jobn = Jobs.submit(jclDataset,jobctrl); */
     jobn = Jobs.submit(jclDataset);
