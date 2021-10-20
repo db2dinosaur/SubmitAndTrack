@@ -1,12 +1,17 @@
 #!groovy
 
-include com.ibm.zoautils.Jobs
-include com.ibm.zoautils.JobsOptions
+import com.ibm.zoautil.Jobs;
+import com.ibm.zoautil.JobsOptions;
 
 String call(String jclDataset) {
   JobsOptions jobctrl = new JobsOptions();
   jobctrl.maxRC(0);
   jobctrl.failOnError();
-  String jobn = submit(jclDataset,jobctrl);
+  String jobn = "--FAIL--";
+  try {
+    jobn = Jobs.submit(jclDataset,jobctrl);
+  } catch (Exception e) {
+    e.printStackTrace();
+  }
   return jobn;
 }
