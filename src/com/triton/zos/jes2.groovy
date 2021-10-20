@@ -6,7 +6,7 @@
 import com.ibm.zoautil.Jobs;
 import com.ibm.zoautil.JobsOptions;
 
-package com.triton.zos
+/* package com.triton.zos */
 
 public class jes2 {
   
