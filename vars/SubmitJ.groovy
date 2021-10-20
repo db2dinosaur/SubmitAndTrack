@@ -10,7 +10,7 @@ String call(String jclDataset) {
   jobctrl.failOnError();
 */
   String jobn = "--FAIL--";
-  jobn = Jobs.submit(jclDataset);
+  jobn = com.ibm.zoautil.Jobs.submit(jclDataset);
   try {
 /*    jobn = Jobs.submit(jclDataset,jobctrl); */
     jobn = Jobs.submit(jclDataset);
