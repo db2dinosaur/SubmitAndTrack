@@ -1,4 +1,3 @@
-#!groovy
 
 import com.ibm.zoautil.Jobs;
 import com.ibm.zoautil.JobsOptions;
