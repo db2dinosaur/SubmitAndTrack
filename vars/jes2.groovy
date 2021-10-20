@@ -1,6 +1,7 @@
 /*
  * jes2 class used to submit and track jobs
- * file name = jes2.groovy
+ * file name = SubmitAndTrack/src/com/triton/jes2.groovy
+ * repo = https://github.com/db2dinosaur/SubmitAndTrack.git
  */
 import com.ibm.zoautil.Jobs;
 import com.ibm.zoautil.JobsOptions;
