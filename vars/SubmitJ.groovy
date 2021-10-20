@@ -1,8 +1,7 @@
 #!groovy
 
-// import com.ibm.zoautil.Jobs;
-//import com.ibm.zoautil.JobsOptions;
-import com.ibm.zoautil;
+import com.ibm.zoautil.Jobs;
+import com.ibm.zoautil.JobsOptions;
 
 String call(String jclDataset) {
   JobsOptions jobctrl = new JobsOptions();
