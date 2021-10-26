@@ -9,6 +9,7 @@ Functions that will be available in SubmitAndTrack are:
 * String CheckJob(String jobNumber)
 * String DDNamesJob(String jobNumber)
 * String GetDDNameJob(String jobNumber, String ddName)
+* String SubmitAndTrack(String datasetName, Int maxCC, Int maxWait, Boolean allDDs)
 
 To use:
 
